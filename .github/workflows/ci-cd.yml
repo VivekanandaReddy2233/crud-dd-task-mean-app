@@ -25,8 +25,8 @@ jobs:
 
     - name: Build frontend image
       run: |
-        docker build -t your-dockerhub-username/frontend:latest ./frontend
-        docker push your-dockerhub-username/frontend:latest
+        docker build -t vivek487/frontend:latest ./frontend
+        docker push vivek487/frontend:latest
 
     - name: SSH into VM & update deployment
       uses: appleboy/ssh-action@v1.0.0

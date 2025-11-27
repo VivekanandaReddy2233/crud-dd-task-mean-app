@@ -1,6 +1,7 @@
 module.exports = app => {
   const tutorials = require("../controllers/tutorial.controller.js");
-
+  const cors = require("cors");
+  app.use(cors());
   var router = require("express").Router();
 
   // Create a new Tutorial

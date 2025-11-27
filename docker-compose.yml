@@ -19,7 +19,7 @@ services:
     depends_on:
       - mongo
     expose:
-      - "8080"        # container’s internal backend port
+      - "3000"        # container’s internal backend port
     # No need to map host port if you access via Nginx
 
   frontend:

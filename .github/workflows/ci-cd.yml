@@ -20,8 +20,8 @@ jobs:
 
     - name: Build backend image
       run: |
-        docker build -t your-dockerhub-username/backend:latest ./backend
-        docker push your-dockerhub-username/backend:latest
+        docker build -t vivek487/backend:latest ./backend
+        docker push vivek487/backend:latest
 
     - name: Build frontend image
       run: |

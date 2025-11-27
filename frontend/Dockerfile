@@ -1,5 +1,5 @@
 # ------------ Stage 1: Build Angular App ------------
-FROM node:18 AS build
+FROM node:18-slim
 WORKDIR /app
 COPY package*.json ./
 RUN npm install

@@ -35,7 +35,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx:~/crud-dd-task-mean-app/nginx/default.conf
     depends_on:
       - frontend
       - backend

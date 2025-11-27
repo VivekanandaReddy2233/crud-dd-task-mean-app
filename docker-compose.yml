@@ -25,7 +25,7 @@ services:
   frontend:
     image: vivek487/frontend:latest
     container_name: frontend
-    restart: unless-stopped
+    #restart: unless-stopped
     ports:
       - "80:80"          # internal port where frontend is served
     depends_on:

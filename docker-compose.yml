@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   backend:
-    image: your-dockerhub-username/backend:latest
+    image: vivek487/backend:latest
     container_name: backend
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
       - MONGO_URL=mongodb://mongo:27017/cruddb
 
   frontend:
-    image: your-dockerhub-username/frontend:latest
+    image: vivek487/frontend:latest
     container_name: frontend
     restart: always
     ports:

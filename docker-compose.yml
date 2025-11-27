@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  backend:
+    image: your-dockerhub-username/backend:latest
+    container_name: backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/cruddb
+
+  frontend:
+    image: your-dockerhub-username/frontend:latest
+    container_name: frontend
+    restart: always
+    ports:
+      - "4200:80"
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"

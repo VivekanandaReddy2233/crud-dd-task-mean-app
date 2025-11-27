@@ -11,18 +11,18 @@ services:
       - mongo_data:/data/db
 
   backend:
-    image: vivek487/backend:latest
+    image: vivek487/backend:latest   # ensure this image exists/pushed
     container_name: backend
     restart: always
-    environment:
-      - MONGO_URL=mongodb://mongo:27017/cruddb
     depends_on:
       - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/cruddb
     expose:
       - "3000"
 
   frontend:
-    image: vivek487/frontend:latest
+    image: vivek487/frontend:latest  # ensure this image exists/pushed
     container_name: frontend
     restart: always
     expose:
@@ -35,7 +35,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx:~/crud-dd-task-mean-app/nginx/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - frontend
       - backend

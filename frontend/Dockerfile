@@ -8,5 +8,5 @@ RUN npm run build --prod
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/frontend-app /usr/share/nginx/html
+COPY --from=build /app/dist/crud-dd-task-mean-app /usr/share/nginx/html
 EXPOSE 80

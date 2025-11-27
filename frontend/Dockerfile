@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm install -g serve
+RUN npm install serve
 RUN npm run build --prod
 EXPOSE 80
-CMD ["serve", "-s", "dist/angular-15-crud/", "-l", "80"]
+CMD ["serve", "-s", "dist/angular-15-crud/", "-l", "80"]

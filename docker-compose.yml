@@ -1,25 +1,44 @@
-version: "3.8"
+version: "3.9"
 
 services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
   backend:
     image: vivek487/backend:latest
     container_name: backend
     restart: always
-    ports:
-      - "3000:3000"
     environment:
       - MONGO_URL=mongodb://mongo:27017/cruddb
+    depends_on:
+      - mongo
+    expose:
+      - "3000"
 
   frontend:
     image: vivek487/frontend:latest
     container_name: frontend
     restart: always
-    ports:
-      - "4200:80"
+    expose:
+      - "80"
 
-  mongo:
-    image: mongo
-    container_name: mongo
+  nginx:
+    image: nginx:latest
+    container_name: nginx
     restart: always
     ports:
-      - "27017:27017"
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  mongo_data:

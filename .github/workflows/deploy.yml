@@ -1,15 +1,15 @@
-name: CI/CD Deploy
+name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Login to Docker Hub
@@ -17,39 +17,22 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: List files in workspace
-      run: ls -R .
-    - name: Build Backend Image
-      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:${{ github.sha }} -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:latest ./backend
 
-    - name: Build Frontend Image
-      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:${{ github.sha }} -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:latest ./frontend
-
-    - name: Push Images
+    - name: Build backend image
       run: |
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:${{ github.sha }}
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:latest
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:${{ github.sha }}
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:latest
-
-    - name: Upload docker-compose + nginx config
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.VM_KEY }}
-        source: "docker-compose.yml,nginx/default.conf"
-        target: "~/crud-dd-task-mean-app"
-
-    - name: Deploy on VM
-      uses: appleboy/ssh-action@master
+        docker build -t vivek487/backend:latest ./backend
+        docker push vivek487/backend:latest
+    - name: Build frontend image
+      run: |
+        docker build -t vivek487/frontend:latest ./frontend
+        docker push vivek487/frontend:latest
+    - name: SSH into VM & update deployment
+      uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.VM_HOST }}
         username: ${{ secrets.VM_USER }}
         key: ${{ secrets.VM_KEY }}
         script: |
           cd ~/crud-dd-task-mean-app
-          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-          docker-compose pull
-          docker-compose up -d --force-recreate
-
+          docker compose pull
+          docker compose up -d

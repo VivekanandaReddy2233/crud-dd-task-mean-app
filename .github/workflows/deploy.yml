@@ -74,7 +74,7 @@ jobs:
         username: ${{ secrets.VM_USER }}
         key: ${{ secrets.VM_KEY }}
         script: |
-          cd ~/crud-app
+          cd ~/crud-dd-task-mean-app
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
           docker-compose pull
           docker-compose up -d --force-recreate

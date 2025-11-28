@@ -13,6 +13,12 @@ This repository contains a **full MEAN-style CRUD application** (MongoDB, Expres
 > ⚠️ Note: This project is a clean sample implementation designed to match the task requirements.  
 > You just need to plug in **your own values** (Docker Hub username, server IP, paths, etc.) and run.
 
+
+## Live Application
+
+🔗 **Working URL:**  
+http://20.41.116.110
+
 ---
 
 ## 1. Project Structure

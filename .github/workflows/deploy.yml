@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-defaults:
-  run:
-    working-directory: crud-dd-task-mean-app
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -20,7 +17,8 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+    - name: List files in workspace
+      run: ls -R .
     - name: Build Backend Image
       run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:${{ github.sha }} -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:latest ./backend
 

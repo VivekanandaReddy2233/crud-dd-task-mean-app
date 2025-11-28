@@ -298,7 +298,7 @@ Ensure `docker-compose.yml` uses the **same image names**.
 - **App working UI** – browser screenshot showing the CRUD interface.
       ![App Workging UI ](./screenshots/app-ui.jpg)
       ![After Code Commit ](./screenshots/final_view.jpg)
-      ![List Task](./screenshots/list-task.jpg)
+      ![List Task](./screenshots/app_work_UI.jpg)
 - **Nginx & Infra** – diagram or screenshot showing services on your VM.
      ![Azure Infra](./screenshots/Azure_Infra.jpg)
 

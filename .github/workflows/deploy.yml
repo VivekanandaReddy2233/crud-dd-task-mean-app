@@ -24,7 +24,7 @@ jobs:
     # -------------------------------
     - name: Build Backend Image
       run: |
-       sudo docker build \
+        docker build \
           -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:${{ github.sha }} \
           -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:latest \
           ./backend
@@ -34,7 +34,7 @@ jobs:
     # -------------------------------
     - name: Build Frontend Image
       run: |
-        sudo docker build \
+        docker build \
           -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:${{ github.sha }} \
           -t ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:latest \
           ./frontend
@@ -44,10 +44,10 @@ jobs:
     # -------------------------------
     - name: Push Images
       run: |
-        sudo docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:${{ github.sha }}
-        sudo docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:latest
-        sudo docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:${{ github.sha }}
-        sudo docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:${{ github.sha }}
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-backend:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:${{ github.sha }}
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/crud-dd-frontend:latest
 
     # -------------------------------
     # COPY FILES TO VM
@@ -72,7 +72,7 @@ jobs:
         key: ${{ secrets.VM_KEY }}
         script: |
           cd ~/crud-dd-task-mean-app
-          sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-          sudo docker-compose pull
-          sudo docker-compose up -d --force-recreate
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker-compose pull
+          docker-compose up -d --force-recreate
 

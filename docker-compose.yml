@@ -11,7 +11,7 @@ services:
       - app_network
 
   backend:
-    image: vivek487/crud-backend:latest
+    image: vivek487/backend:latest
     container_name: backend
     restart: always
     environment:
@@ -24,7 +24,7 @@ services:
       - "8080"
 
   frontend:
-    image: vivek487/crud-frontend:latest
+    image: vivek487/frontend:latest
     container_name: frontend
     restart: always
     expose:

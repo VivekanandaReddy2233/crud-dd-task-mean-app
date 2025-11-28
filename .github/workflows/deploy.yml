@@ -19,6 +19,9 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Disable BuildKit
+      run: echo "DOCKER_BUILDKIT=0" >> $GITHUB_ENV
+
     # -------------------------------
     # BUILD BACKEND IMAGE
     # -------------------------------

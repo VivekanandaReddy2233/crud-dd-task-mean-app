@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-
+defaults:
+  run:
+    working-directory: crud-dd-task-mean-app
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest

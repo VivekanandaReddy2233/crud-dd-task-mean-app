@@ -286,9 +286,7 @@ Ensure `docker-compose.yml` uses the **same image names**.
 ![Docker Hub](./screenshots/docker-Images.jpg)
 ---
 
-## 10. Screenshots to Include (For Your Submission)
-
-You'll need to manually take these screenshots and add them to your repo (e.g., under a `screenshots/` folder):
+## 10. Screenshots 
 
 - **CI/CD configuration** – screenshot of `.github/workflows` in GitHub UI.
 - **CI/CD run** – screenshot of a successful Actions run.
@@ -310,5 +308,5 @@ You'll need to manually take these screenshots and add them to your repo (e.g., 
 ## 11. Notes
 
 - Replace all placeholders like `<your-username>`, `<dockerhub-username>`, IPs, and paths with your own.
-- Test locally with `docker compose up -d --build` before wiring up CI/CD.
-- This structure is ready to be pushed to **GitHub** and used directly for your task submission.
+- Test locally with `docker compose up -d ` before wiring up CI/CD.
+- This structure is ready to be pushed to **GitHub** and used directly.
